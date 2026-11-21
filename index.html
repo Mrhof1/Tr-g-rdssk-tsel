@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trädgårdsskötsel</title>
   <!-- PWA & Mobilmetataggar -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Tr%C3%A4dg%C3%A5rdssk%C3%B6tsel%22%2C%22short_name%22%3A%22Tr%C3%A4dg%C3%A5rd%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f3f6f4%22%2C%22theme_color%22%3A%22%231f6e43%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data:image%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%27112%27%2520fill%3D%27%25231f6e43%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27335%27%2520font-size%3D%27250%27%2520text-anchor%3D%27middle%27%253E%25F0%259F%258C%25BF%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%3D%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Tr%C3%A4dg%C3%A5rdssk%C3%B6tsel%22%2C%22short_name%22%3A%22Tr%C3%A4dg%C3%A5rd%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f3f6f4%22%2C%22theme_color%22%3A%22%231f6e43%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%27112%27%2520fill%3D%27%25231f6e43%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27335%27%2520font-size%3D%27250%27%2520text-anchor%3D%27middle%27%253E%25F0%259F%258C%25BF%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%3D%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
   <link id="apple-touch-icon-link" rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231f6e43'/%3E%3Ctext x='256' y='335' font-size='250' text-anchor='middle'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -58,66 +58,6 @@
       -webkit-font-smoothing: antialiased;
       padding-bottom: 84px;
       touch-action: manipulation;
-    }
-
-    /* INLOGGNINGSSKÄRM (HELSKÄRM) */
-    .login-gate-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(145deg, #0f291c 0%, #174e30 50%, #1f6e43 100%);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-    }
-
-    .login-gate-card {
-      background: #ffffff;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 400px;
-      padding: 28px 24px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      text-align: center;
-    }
-
-    .login-gate-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      background: var(--primary-soft);
-      border: 2px solid var(--primary-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      margin: 0 auto;
-    }
-
-    .login-gate-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .login-gate-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    .login-error-msg {
-      background: var(--danger-soft);
-      color: var(--danger);
-      border: 1px solid #fecaca;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.84rem;
-      font-weight: 700;
     }
 
     button, input, select, textarea {
@@ -954,53 +894,7 @@
       display: none !important;
     }
 
-    /* KONTROLL- OCH SYNK-INDIKATORER */
-    .sync-status-banner {
-      background: #0f172a;
-      color: #38bdf8;
-      font-family: monospace;
-      font-size: 0.78rem;
-      padding: 10px 14px;
-      border-radius: var(--radius-md);
-      margin-bottom: 12px;
-      border: 1px solid #334155;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    /* MOBIL-FÖRHANDSVISNING PÅ DATORN */
-    body.mobile-preview-mode {
-      background-color: #0f172a;
-      padding: 24px 12px 64px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-    }
-
-    body.mobile-preview-mode .container {
-      max-width: 412px;
-      width: 100%;
-      background-color: var(--bg-page);
-      border: 14px solid #1e293b;
-      border-radius: 40px;
-      padding: 16px 12px 32px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-      position: relative;
-    }
-
-    body.mobile-preview-mode .container::before {
-      content: "";
-      display: block;
-      width: 110px;
-      height: 6px;
-      background: #475569;
-      border-radius: 999px;
-      margin: 0 auto 14px;
-    }
-
-    @media (max-width: 600px), body.mobile-preview-mode {
+    @media (max-width: 600px) {
       .container {
         padding: 4px;
       }
@@ -1048,44 +942,7 @@
   </style>
 </head>
 <body>
-  <!-- INLOGGNINGSSKÄRM (SKYDDAR HELA SIDAN VID LIVE-DRIFT) -->
-  <div id="login-gate-overlay" class="login-gate-overlay hidden">
-    <div class="login-gate-card">
-      <div class="login-gate-icon">🌿</div>
-      <h2 id="login-gate-title" class="login-gate-title">Trädgårdsskötsel</h2>
-      <p id="login-gate-desc" class="login-gate-desc">
-        Sidan är lösenordsskyddad. Ange teamets inloggningskod för att öppna kundlistor och körscheman.
-      </p>
-
-      <div id="login-error-box" class="login-error-msg hidden"></div>
-
-      <div style="text-align:left;">
-        <label for="login-gate-input" style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px; color:var(--text-main);">Lösenord / PIN-kod:</label>
-        <input type="password" id="login-gate-input" class="form-input" style="font-size:1.05rem; padding:12px;" placeholder="Ange lösenord..." onkeydown="if(event.key==='Enter') handleSiteLoginSubmit()">
-      </div>
-
-      <div id="login-gate-confirm-wrap" class="hidden" style="text-align:left;">
-        <label for="login-gate-confirm" style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px; color:var(--text-main);">Bekräfta lösenord:</label>
-        <input type="password" id="login-gate-confirm" class="form-input" style="font-size:1.05rem; padding:12px;" placeholder="Skriv samma lösenord igen..." onkeydown="if(event.key==='Enter') handleSiteLoginSubmit()">
-      </div>
-
-      <label style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:0.84rem; font-weight:600; color:var(--text-muted); cursor:pointer;">
-        <input type="checkbox" id="login-remember-chk" checked style="width:16px; height:16px; accent-color:var(--primary);">
-        Håll mig inloggad på den här enheten
-      </label>
-
-      <button type="button" id="login-gate-submit-btn" class="btn-primary" style="width:100%; min-height:48px; font-size:1rem;" onclick="handleSiteLoginSubmit()">
-        🔓 Logga in
-      </button>
-    </div>
-  </div>
-
-  <div id="app-main-wrapper" class="container">
-    <!-- SYNC & DEBUG STATUS BANNER -->
-    <div id="mobile-debug-log" class="sync-status-banner">
-      <div>📱 PWA &amp; Moln-synk: Redo för synkronisering</div>
-    </div>
-
+  <div class="container">
     <!-- Tydlig Felsökningspanel -->
     <section id="team-sync-panel" class="panel" style="background:#f8fafc; border:2px dashed var(--primary-border); padding:12px; margin-bottom:12px;">
       <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
@@ -1162,13 +1019,7 @@
           ▲ Dölj Team-synk
         </button>
         <button type="button" class="btn-secondary btn-sm" style="background:rgba(255,255,255,0.2); border:none; color:#fff; min-height:34px; padding:4px 10px; font-size:0.8rem; cursor:pointer;" onclick="toggleTopSectionCollapse()" id="btn-collapse-top">
-          ▲ Dölj topp
-        </button>
-        <button type="button" class="btn-secondary btn-sm" style="background:rgba(255,255,255,0.2); border:none; color:#fff; min-height:34px; padding:4px 10px; font-size:0.8rem; cursor:pointer;" onclick="openSiteAccessModal()" id="btn-site-access" title="Ställ in inloggning för hela sidan">
-          🛡️ Inloggning
-        </button>
-        <button type="button" id="btn-logout-site" class="btn-secondary btn-sm hidden" style="background:rgba(220,38,38,0.85); border:none; color:#fff; min-height:34px; padding:4px 10px; font-size:0.8rem; cursor:pointer;" onclick="logoutSite()" title="Lås och logga ut från sidan">
-          🚪 Logga ut
+          🔒 Dölj topp
         </button>
         <div class="status-pill" id="save-status" onclick="openCloudModal()" style="cursor:pointer; display:flex; align-items:center; gap:6px;" title="Klicka för att hantera molnsynk">
           <span id="cloud-green-dot" style="width:10px; height:10px; background-color:#22c55e; border-radius:50%; display:inline-block; box-shadow:0 0 6px rgba(0,0,0,0.3); transition:background-color 0.3s ease;"></span>
@@ -1182,9 +1033,6 @@
       <!-- MAIN ACTION BAR -->
       <section class="panel" aria-label="Huvudverktyg">
         <div class="toolbar-grid">
-          <button type="button" id="btn-toggle-mobile-preview" class="btn-secondary" onclick="toggleMobilePreview()">
-            📱 Visa som mobil
-          </button>
           <button type="button" id="btn-toggle-week-view" class="btn-blue" onclick="toggleDrawer('weekView')">
             📅 Veckoschema (Körlista v.<span id="btn-week-num">--</span>)
           </button>
@@ -1206,9 +1054,6 @@
           <button type="button" class="btn-primary" onclick="openNewCustomerModal()">
             ➕ Lägg till kund
           </button>
-          <button type="button" class="btn-secondary" onclick="openDataTransferModal()">
-            📋 Kopiera / Klistra in data
-          </button>
           <button type="button" class="btn-secondary" onclick="downloadJsonBackup()">
             💾 Spara fil (.json)
           </button>
@@ -1220,9 +1065,6 @@
           </button>
           <button type="button" class="btn-blue" onclick="openCloudModal()">
             ☁️ Moln &amp; Konto
-          </button>
-          <button type="button" class="btn-secondary" onclick="openModal('modal-pwa-guide')">
-            📱 PWA-guide (iPhone)
           </button>
           <button type="button" class="btn-danger-soft" onclick="openResetModal()">
             🔄 Återställ standard
@@ -1488,28 +1330,6 @@
     </div>
   </div>
 
-  <!-- MODAL: PWA GUIDE FÖR IPHONE -->
-  <div id="modal-pwa-guide" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="pwa-guide-title">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="pwa-guide-title">📱 Så installerar du PWA på iPhone (iOS)</h3>
-        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-pwa-guide')">✕</button>
-      </div>
-      <p style="font-size:0.9rem; color:var(--text-main); line-height:1.5;">
-        Att installera appen som en <strong>PWA (Progressive Web App)</strong> på din iPhone gör att molnsynken fungerar klockrent i bakgrunden och att appen öppnas i fullskärm utan Safari-kanter:
-      </p>
-      <ol style="padding-left:18px; font-size:0.86rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
-        <li>Öppna den här webbsidan i <strong>Safari</strong> på din iPhone.</li>
-        <li>Klicka på <strong>Dela-knappen</strong> längst ner i Safari (fyrkanten med pilen som pekar uppåt).</li>
-        <li>Skrolla ner i menyn och välj <strong>"Lägg till på hemskärmen"</strong>.</li>
-        <li>Tryck på <strong>Lägg till</strong> uppe till höger. Nu ligger appen som en riktig ikon på din hemskärm och synkar automatiskt med datorn!</li>
-      </ol>
-      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
-        <button type="button" class="btn-primary" onclick="closeModal('modal-pwa-guide')">Förstått ✓</button>
-      </div>
-    </div>
-  </div>
-
   <!-- MODAL: SPARAR LOKALT / HJÄLP -->
   <div id="modal-save-backup-help" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="backup-modal-title">
     <div class="modal-box">
@@ -1558,31 +1378,6 @@
     </div>
   </div>
 
-  <!-- MODAL: KOPIERA / KLISTRA IN DATA -->
-  <div id="modal-data-transfer" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="transfer-modal-title">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="transfer-modal-title">📋 Kopiera / Klistra in data</h3>
-        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-data-transfer')">✕</button>
-      </div>
-      <p style="font-size:0.84rem; color:var(--text-muted);">
-        Använd detta för att enkelt flytta dina markeringar mellan uppdateringar eller säkerhetskopiera till urklipp.
-      </p>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button type="button" class="btn-primary btn-sm" onclick="copyDataToClipboard()">📋 Kopiera all data till urklipp</button>
-        <button type="button" class="btn-secondary btn-sm" onclick="document.getElementById('transfer-textarea').value = ''">Rensa ruta</button>
-      </div>
-      <div>
-        <label for="transfer-textarea" style="display:block; font-size:0.82rem; font-weight:700; margin-bottom:4px;">Datatext (JSON):</label>
-        <textarea id="transfer-textarea" class="form-textarea" rows="6" placeholder="Klistra in kopierad data här och tryck på 'Läs in inklistrad data'..."></textarea>
-      </div>
-      <div style="display:flex; justify-content:flex-end; gap:8px;">
-        <button type="button" class="btn-secondary" onclick="closeModal('modal-data-transfer')">Stäng</button>
-        <button type="button" class="btn-primary" onclick="importPastedData()">📥 Läs in inklistrad data</button>
-      </div>
-    </div>
-  </div>
-
   <!-- MODAL: BEKRÄFTA ÅTERSTÄLLNING -->
   <div id="modal-reset" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
     <div class="modal-box">
@@ -1622,7 +1417,7 @@
         <div style="background:#ffffff; border:1px solid var(--primary-border); border-radius:8px; padding:10px; font-size:0.8rem; color:var(--text-main); line-height:1.4;">
           <div style="font-weight:700; color:var(--primary); margin-bottom:4px;">💡 Skillnad på X-Master-Key och X-Access-Key:</div>
           <ul style="padding-left:16px; margin:0; display:flex; flex-direction:column; gap:3px; color:var(--text-muted);">
-            <li><strong>X-Master-Key:</strong> Huvudnyckeln till hela ditt konto (full behörighet till allt). Om du klistrat in denna kvittar det vilka rutor som var ikryssade, eftersom den alltid har full tillgång.</li>
+            <li><strong>X-Master-Key:</strong> Huvudnyckeln till hela ditt konto (full behörighet till allt). Om du klistrat in denna kvittar det vilka rutor som var i্বকryssade, eftersom den alltid har full tillgång.</li>
             <li><strong>X-Access-Key:</strong> En specifik åtkomstnyckel. Om du skapat en sådan och <strong>bockat i alla behörighetsrutor</strong> (läsa, skriva, uppdatera bin) fungerar den helt utmärkt för appens synk!</li>
           </ul>
         </div>
@@ -1665,11 +1460,11 @@
   <div id="modal-teamsync-password" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="teamsync-pw-title">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="teamsync-pw-title">🔒 Lösenordsskydda Team-synk</h3>
+        <h3 id="teamsync-pw-title">🔒 Lösenordsskydd</h3>
         <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-teamsync-password')">✕</button>
       </div>
       <p id="teamsync-pw-desc" style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">
-        Välj ett lösenord för att låsa Team-synk-inställningarna så att ingen av misstag ändrar Bin ID, API-nyckel eller kopierar nycklarna.
+        Välj ett lösenord för att låsa verktygsfältet (toppen) och Team-synk-inställningarna så att ingen av misstag ändrar scheman, raderar eller ändrar nycklar.
       </p>
       <div>
         <label for="teamsync-pw-input" style="display:block; font-size:0.82rem; font-weight:700; margin-bottom:4px;">Lösenord / PIN-kod:</label>
@@ -1689,37 +1484,6 @@
     </div>
   </div>
 
-  <!-- MODAL: INLOGGNING FÖR HELA SIDAN (LIVE-SKYDD) -->
-  <div id="modal-site-access" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="site-access-title">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="site-access-title">🛡️ Inloggning för hela sidan</h3>
-        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-site-access')">✕</button>
-      </div>
-      <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">
-        Sätt ett gemensamt team-lösenord för att öppna appen. När sidan publiceras online måste alla ange detta lösenord en gång på sin enhet innan några kunduppgifter eller grindkoder visas.
-      </p>
-      <div id="site-access-status-box" style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:8px; padding:10px; font-size:0.84rem;">
-        Status: <strong id="site-access-status-label">Ej aktiverat</strong>
-      </div>
-      <div>
-        <label for="site-access-pw-input" style="display:block; font-size:0.82rem; font-weight:700; margin-bottom:4px;">Nytt team-lösenord / PIN-kod:</label>
-        <input type="password" id="site-access-pw-input" class="form-input" placeholder="t.ex. 2026 eller ett lösenord...">
-      </div>
-      <div>
-        <label for="site-access-pw-confirm" style="display:block; font-size:0.82rem; font-weight:700; margin-bottom:4px;">Bekräfta team-lösenord:</label>
-        <input type="password" id="site-access-pw-confirm" class="form-input" placeholder="Skriv samma lösenord igen...">
-      </div>
-      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-top:6px;">
-        <button type="button" id="btn-disable-site-access" class="btn-danger-soft btn-sm hidden" onclick="disableSiteAccessPassword()">🗑️ Ta bort inloggningskrav</button>
-        <div style="display:flex; gap:8px; margin-left:auto;">
-          <button type="button" class="btn-secondary" onclick="closeModal('modal-site-access')">Avbryt</button>
-          <button type="button" class="btn-primary" onclick="saveSiteAccessPassword()">🛡️ Aktivera inloggning</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- TOAST NOTIFICATION -->
   <div id="toast-bar" class="toast-bar hidden" role="status">
     <span id="toast-message"></span>
@@ -1727,13 +1491,10 @@
     <button type="button" id="toast-undo-btn" class="toast-undo-btn hidden" onclick="triggerToastUndo()">Ångra</button>
   </div>
 
-  <!-- JSONBIN.IO TEAM-SYNK & SIDINLOGGNING -->
+  <!-- JSONBIN.IO TEAM-SYNK (ERSÄTTER GAMLA SYNK-PROGRAM) -->
   <script>
     const JSONBIN_CFG_KEY = 'tradgard_jsonbin_config_v1';
     const TEAMSYNC_PW_KEY = 'tradgard_teamsync_pw_v1';
-    const SITE_ACCESS_PW_KEY = 'tradgard_site_access_pw_v1';
-    const SITE_ACCESS_AUTH_KEY = 'tradgard_site_authenticated_v1';
-
     let isCloudSyncing = false;
     let isRemoteUpdate = false;
     let jsonBinPollTimer = null;
@@ -1741,6 +1502,7 @@
     let isSavingToJsonBin = false;
     let isTeamSyncUnlockedSession = false;
     let teamSyncPwModalMode = 'set'; // 'set' | 'unlock'
+    let pendingUnlockAction = 'teamsync'; // 'teamsync' | 'showTop'
 
     // Fristående och säker lagring för inställningar (fungerar även före huvudskriptet)
     const configStore = {
@@ -1772,169 +1534,10 @@
       }
     };
 
-    /* ============================================================================
-       SIDINLOGGNING (SKYDDAR HELA APPEN VID LIVE-PUBLICERING)
-       ============================================================================ */
-    function getSiteAccessPassword() {
-      return configStore.get(SITE_ACCESS_PW_KEY);
-    }
-
-    function isSiteAuthenticated() {
-      const pw = getSiteAccessPassword();
-      if (!pw) return true; // Om inget lösenord är satt ännu är sidan öppen
-      try {
-        if (window.sessionStorage.getItem(SITE_ACCESS_AUTH_KEY) === pw) return true;
-        if (window.localStorage.getItem(SITE_ACCESS_AUTH_KEY) === pw) return true;
-      } catch (e) {}
-      return false;
-    }
-
-    function updateSiteAccessUI() {
-      const pw = getSiteAccessPassword();
-      const authed = isSiteAuthenticated();
-      const overlay = document.getElementById('login-gate-overlay');
-      const mainWrapper = document.getElementById('app-main-wrapper');
-      const logoutBtn = document.getElementById('btn-logout-site');
-      const accessBtn = document.getElementById('btn-site-access');
-
-      if (pw) {
-        if (logoutBtn) logoutBtn.classList.remove('hidden');
-        if (accessBtn) accessBtn.innerHTML = '🛡️ Inloggning (På)';
-      } else {
-        if (logoutBtn) logoutBtn.classList.add('hidden');
-        if (accessBtn) accessBtn.innerHTML = '🛡️ Inloggning (Av)';
-      }
-
-      if (!authed) {
-        if (overlay) overlay.classList.remove('hidden');
-        if (mainWrapper) mainWrapper.classList.add('hidden');
-        const errBox = document.getElementById('login-error-box');
-        if (errBox) errBox.classList.add('hidden');
-        const inp = document.getElementById('login-gate-input');
-        if (inp) {
-          inp.value = '';
-          setTimeout(() => inp.focus(), 60);
-        }
-      } else {
-        if (overlay) overlay.classList.add('hidden');
-        if (mainWrapper) mainWrapper.classList.remove('hidden');
-      }
-    }
-
-    window.handleSiteLoginSubmit = function() {
-      const storedPw = getSiteAccessPassword();
-      const inputVal = (document.getElementById('login-gate-input').value || '').trim();
-      const remember = document.getElementById('login-remember-chk').checked;
-      const errBox = document.getElementById('login-error-box');
-
-      if (!inputVal) {
-        if (errBox) {
-          errBox.textContent = 'Ange lösenordet först.';
-          errBox.classList.remove('hidden');
-        }
-        return;
-      }
-
-      if (inputVal === storedPw) {
-        try {
-          window.sessionStorage.setItem(SITE_ACCESS_AUTH_KEY, storedPw);
-          if (remember) {
-            window.localStorage.setItem(SITE_ACCESS_AUTH_KEY, storedPw);
-          } else {
-            window.localStorage.removeItem(SITE_ACCESS_AUTH_KEY);
-          }
-        } catch (e) {}
-        updateSiteAccessUI();
-        if (typeof renderAll === 'function') renderAll();
-        showToast('Välkommen! Du är nu inloggad. 🌿');
-      } else {
-        if (errBox) {
-          errBox.textContent = 'Fel lösenord! Kontrollera koden och försök igen.';
-          errBox.classList.remove('hidden');
-        }
-      }
-    };
-
-    window.logoutSite = function() {
-      try {
-        window.sessionStorage.removeItem(SITE_ACCESS_AUTH_KEY);
-        window.localStorage.removeItem(SITE_ACCESS_AUTH_KEY);
-      } catch (e) {}
-      updateSiteAccessUI();
-    };
-
-    window.openSiteAccessModal = function() {
-      const pw = getSiteAccessPassword();
-      const statusLabel = document.getElementById('site-access-status-label');
-      const disableBtn = document.getElementById('btn-disable-site-access');
-      if (pw) {
-        if (statusLabel) {
-          statusLabel.textContent = 'Aktivt (Kräver inloggning vid besök) 🔒';
-          statusLabel.style.color = 'var(--primary)';
-        }
-        if (disableBtn) disableBtn.classList.remove('hidden');
-      } else {
-        if (statusLabel) {
-          statusLabel.textContent = 'Ej aktiverat (Sidan är öppen) 🔓';
-          statusLabel.style.color = 'var(--text-muted)';
-        }
-        if (disableBtn) disableBtn.classList.add('hidden');
-      }
-      document.getElementById('site-access-pw-input').value = '';
-      document.getElementById('site-access-pw-confirm').value = '';
-      openModal('modal-site-access');
-      setTimeout(() => document.getElementById('site-access-pw-input').focus(), 50);
-    };
-
-    window.saveSiteAccessPassword = function() {
-      const p1 = (document.getElementById('site-access-pw-input').value || '').trim();
-      const p2 = (document.getElementById('site-access-pw-confirm').value || '').trim();
-      if (!p1) {
-        showToast('Ange ett lösenord först.');
-        return;
-      }
-      if (p1 !== p2) {
-        showToast('Lösenorden matchar inte – försök igen.');
-        return;
-      }
-      configStore.set(SITE_ACCESS_PW_KEY, p1);
-      try {
-        window.sessionStorage.setItem(SITE_ACCESS_AUTH_KEY, p1);
-        window.localStorage.setItem(SITE_ACCESS_AUTH_KEY, p1);
-      } catch (e) {}
-      const cfg = getJsonBinConfig();
-      if (cfg) syncUrlHashWithConfig(cfg);
-      closeModal('modal-site-access');
-      updateSiteAccessUI();
-      if (typeof window.saveStateToCloud === 'function' && isCloudSyncing) {
-        window.saveStateToCloud();
-      }
-      showToast('Inloggningskrav aktiverat! Objudna gäster stoppas nu. 🛡️');
-    };
-
-    window.disableSiteAccessPassword = function() {
-      configStore.set(SITE_ACCESS_PW_KEY, '');
-      try {
-        window.sessionStorage.removeItem(SITE_ACCESS_AUTH_KEY);
-        window.localStorage.removeItem(SITE_ACCESS_AUTH_KEY);
-      } catch (e) {}
-      const cfg = getJsonBinConfig();
-      if (cfg) syncUrlHashWithConfig(cfg);
-      closeModal('modal-site-access');
-      updateSiteAccessUI();
-      if (typeof window.saveStateToCloud === 'function' && isCloudSyncing) {
-        window.saveStateToCloud();
-      }
-      showToast('Inloggningskravet har tagits bort.');
-    };
-
     function syncUrlHashWithConfig(cfg) {
       try {
         if (cfg && cfg.binId && cfg.apiKey) {
-          const sitePw = getSiteAccessPassword();
-          const dataObj = { binId: cfg.binId, apiKey: cfg.apiKey };
-          if (sitePw) dataObj.sitePw = sitePw;
-          const payload = JSON.stringify(dataObj);
+          const payload = JSON.stringify({ binId: cfg.binId, apiKey: cfg.apiKey });
           const encoded = btoa(unescape(encodeURIComponent(payload)));
           history.replaceState(null, '', '#team=' + encoded);
         } else {
@@ -2013,8 +1616,86 @@
         // Lås igen direkt
         isTeamSyncUnlockedSession = false;
         updateTeamSyncLockUI();
-        showToast('Team-synk är nu låst igen. 🔒');
+        showToast('Inställningar är nu låsta igen. 🔒');
       }
+    };
+
+    window.openUnlockTeamSyncModal = function(actionAfterUnlock = 'teamsync') {
+      pendingUnlockAction = actionAfterUnlock;
+      teamSyncPwModalMode = 'unlock';
+      document.getElementById('teamsync-pw-title').textContent = actionAfterUnlock === 'showTop' ? '🔑 Lås upp toppmeny' : '🔑 Lås upp inställningar';
+      document.getElementById('teamsync-pw-desc').textContent = actionAfterUnlock === 'showTop'
+        ? 'Ange lösenordet för att visa verktygsfältet och filtermenyn i toppen.'
+        : 'Ange lösenordet för att visa eller ändra Team-synk-inställningarna.';
+      document.getElementById('teamsync-pw-confirm-wrap').classList.add('hidden');
+      document.getElementById('btn-remove-teamsync-pw').classList.remove('hidden');
+      document.getElementById('btn-submit-teamsync-pw').textContent = '🔓 Lås upp';
+      document.getElementById('teamsync-pw-input').value = '';
+      openModal('modal-teamsync-password');
+      setTimeout(() => document.getElementById('teamsync-pw-input').focus(), 50);
+    };
+
+    window.submitTeamSyncPassword = function() {
+      const pwInput = (document.getElementById('teamsync-pw-input').value || '').trim();
+      if (!pwInput) {
+        showToast('Ange ett lösenord först.');
+        return;
+      }
+
+      if (teamSyncPwModalMode === 'set') {
+        const confirmInput = (document.getElementById('teamsync-pw-confirm').value || '').trim();
+        if (pwInput !== confirmInput) {
+          showToast('Lösenorden matchar inte – försök igen.');
+          return;
+        }
+        configStore.set(TEAMSYNC_PW_KEY, pwInput);
+        isTeamSyncUnlockedSession = false;
+        closeModal('modal-teamsync-password');
+        updateTeamSyncLockUI();
+        if (pendingUnlockAction === 'hideTop') {
+          applyTopSectionCollapse(true);
+          showToast('Lösenord sparat och toppen är nu dold & låst! 🔒');
+        } else {
+          showToast('Lösenordsskydd aktiverat! 🔒');
+        }
+        pendingUnlockAction = 'teamsync';
+      } else {
+        const stored = getStoredTeamSyncPassword();
+        if (pwInput === stored) {
+          isTeamSyncUnlockedSession = true;
+          closeModal('modal-teamsync-password');
+          updateTeamSyncLockUI();
+          if (pendingUnlockAction === 'showTop') {
+            applyTopSectionCollapse(false);
+            showToast('Toppmeny upplåst! 🔓');
+          } else {
+            const inlineSetup = document.getElementById('inline-jsonbin-setup');
+            if (inlineSetup) inlineSetup.classList.remove('hidden');
+            showToast('Inställningar upplåsta! 🔓');
+          }
+          pendingUnlockAction = 'teamsync';
+        } else {
+          showToast('Fel lösenord! Försök igen.');
+        }
+      }
+    };
+
+    window.removeTeamSyncPassword = function() {
+      const pwInput = (document.getElementById('teamsync-pw-input').value || '').trim();
+      const stored = getStoredTeamSyncPassword();
+      if (pwInput !== stored) {
+        showToast('Skriv in rätt lösenord i rutan ovan för att ta bort skyddet.');
+        return;
+      }
+      configStore.set(TEAMSYNC_PW_KEY, '');
+      isTeamSyncUnlockedSession = false;
+      closeModal('modal-teamsync-password');
+      updateTeamSyncLockUI();
+      if (pendingUnlockAction === 'showTop') {
+        applyTopSectionCollapse(false);
+      }
+      pendingUnlockAction = 'teamsync';
+      showToast('Lösenordsskyddet är borttaget.');
     };
 
     window.openUnlockTeamSyncModal = function() {
@@ -2118,9 +1799,6 @@
               apiKey: String(parsed.apiKey).trim()
             };
             configStore.set(JSONBIN_CFG_KEY, JSON.stringify(cfg));
-            if (parsed.sitePw && !getSiteAccessPassword()) {
-              configStore.set(SITE_ACCESS_PW_KEY, String(parsed.sitePw).trim());
-            }
             syncUrlHashWithConfig(cfg);
           }
         }
@@ -2140,10 +1818,7 @@
         showToast('Fyll i och spara Bin ID + API-nyckel först.');
         return;
       }
-      const sitePw = getSiteAccessPassword();
-      const dataObj = { binId: cfg.binId, apiKey: cfg.apiKey };
-      if (sitePw) dataObj.sitePw = sitePw;
-      const payload = JSON.stringify(dataObj);
+      const payload = JSON.stringify({ binId: cfg.binId, apiKey: cfg.apiKey });
       const encoded = btoa(unescape(encodeURIComponent(payload)));
       const baseUrl = window.location.href.split('#')[0];
       const shareUrl = `${baseUrl}#team=${encoded}`;
@@ -2254,7 +1929,6 @@
       const dotEl = document.getElementById('cloud-green-dot');
       const badgeEl = document.getElementById('cloud-status-badge');
       const debugStatusEl = document.getElementById('debug-status-text');
-      const logEl = document.getElementById('mobile-debug-log');
 
       try {
         const res = await fetch(`https://api.jsonbin.io/v3/b/${encodeURIComponent(cfg.binId)}/latest`, {
@@ -2273,15 +1947,6 @@
         const data = await res.json();
         const record = (data && data.record) ? data.record : data;
 
-        // Synka även sidans inloggningskrav från molnet om administratören har satt ett lösenord
-        if (record && typeof record.siteAccessPw === 'string') {
-          const currentLocalPw = getSiteAccessPassword();
-          if (record.siteAccessPw !== currentLocalPw) {
-            configStore.set(SITE_ACCESS_PW_KEY, record.siteAccessPw);
-            updateSiteAccessUI();
-          }
-        }
-
         if (record && Array.isArray(record.customers) && record.customers.length > 0) {
           const remoteUpdatedAt = record.updatedAt || '';
           if (isInitialLoad || (remoteUpdatedAt && remoteUpdatedAt !== lastKnownUpdatedAt)) {
@@ -2297,7 +1962,6 @@
             }));
             renderAll();
             isRemoteUpdate = false;
-            if (logEl) logEl.innerHTML = `<div>📱 Synkad med teamet (${new Date().toLocaleTimeString()}) ✓</div>`;
           }
         } else if (isInitialLoad) {
           // Bin är tom – ladda upp nuvarande lista som startdata
@@ -2325,7 +1989,6 @@
 
     window.initCloudSync = async function() {
       checkTeamUrlSetup();
-      updateSiteAccessUI();
 
       const statusEl = document.getElementById('cloud-status-text');
       const dotEl = document.getElementById('cloud-green-dot');
@@ -2333,7 +1996,6 @@
       const idEl = document.getElementById('cloud-user-id-text');
       const debugIdEl = document.getElementById('debug-user-id');
       const debugStatusEl = document.getElementById('debug-status-text');
-      const logEl = document.getElementById('mobile-debug-log');
 
       const cfg = getJsonBinConfig();
       const binInput = document.getElementById('jsonbin-id-input');
@@ -2352,7 +2014,6 @@
         if (idEl) idEl.textContent = 'Ingen';
         if (debugIdEl) debugIdEl.textContent = 'Ej kopplad';
         if (debugStatusEl) debugStatusEl.textContent = 'Ej kopplad – fyll i Bin ID & API-nyckel ovan';
-        if (logEl) logEl.innerHTML = '<div>📱 Team-synk: Ej kopplad ännu. Fyll i Bin ID och API-nyckel i rutorna nedan.</div>';
         return;
       }
 
@@ -2384,7 +2045,6 @@
       const statePayload = {
         customers: state.customers,
         selectedWeek: state.selectedWeek,
-        siteAccessPw: getSiteAccessPassword() || '',
         updatedAt: nowIso
       };
 
@@ -2395,7 +2055,6 @@
       const cfg = getJsonBinConfig();
       const statusEl = document.getElementById('cloud-status-text');
       const dotEl = document.getElementById('cloud-green-dot');
-      const logEl = document.getElementById('mobile-debug-log');
 
       if (!cfg) return;
 
@@ -2417,11 +2076,9 @@
 
         if (statusEl) statusEl.textContent = 'Team-synk aktiv';
         if (dotEl) dotEl.style.backgroundColor = '#22c55e';
-        if (logEl) logEl.innerHTML = `<div>📱 Sparat &amp; skickat till teamet (${new Date().toLocaleTimeString()}) ✓</div>`;
       } catch (e) {
         console.debug('Kunde inte spara till JSONBin:', e);
         if (dotEl) dotEl.style.backgroundColor = '#ef4444';
-        if (logEl) logEl.innerHTML = `<div>📱 Kunde inte skicka till molnet (${e.message})</div>`;
       } finally {
         isSavingToJsonBin = false;
       }
@@ -2441,7 +2098,7 @@
     let saveTimeout = null;
     document.addEventListener('input', (e) => {
       if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) {
-        if (e.target.id === 'jsonbin-id-input' || e.target.id === 'jsonbin-key-input' || e.target.id === 'inline-bin-id' || e.target.id === 'inline-api-key' || e.target.id === 'login-gate-input' || e.target.id === 'site-access-pw-input' || e.target.id === 'site-access-pw-confirm') return;
+        if (e.target.id === 'jsonbin-id-input' || e.target.id === 'jsonbin-key-input' || e.target.id === 'inline-bin-id' || e.target.id === 'inline-api-key') return;
         clearTimeout(saveTimeout);
         saveTimeout = setTimeout(() => {
           if (typeof window.saveStateToCloud === 'function') {
@@ -2453,7 +2110,7 @@
 
     document.addEventListener('change', (e) => {
       if (e.target && (e.target.type === 'checkbox' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
-        if (e.target.id === 'jsonbin-id-input' || e.target.id === 'jsonbin-key-input' || e.target.id === 'inline-bin-id' || e.target.id === 'inline-api-key' || e.target.id === 'login-remember-chk') return;
+        if (e.target.id === 'jsonbin-id-input' || e.target.id === 'jsonbin-key-input' || e.target.id === 'inline-bin-id' || e.target.id === 'inline-api-key') return;
         if (typeof window.saveStateToCloud === 'function') {
           window.saveStateToCloud();
         }
@@ -2468,10 +2125,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Kontrollera direkt om sidan har inloggningsskydd
-      checkTeamUrlSetup();
-      updateSiteAccessUI();
-
       // Generera högupplöst PNG-ikon för iPhone (iOS kräver PNG för apple-touch-icon)
       try {
         const iconCanvas = document.createElement('canvas');
@@ -2687,7 +2340,6 @@
       expandedTaskPickerId: null,
       expandedCompletedIds: {},
       selectedWeekSetupIds: {},
-      mobilePreview: false,
       topSectionCollapsed: false
     };
 
@@ -2903,6 +2555,9 @@
           if (panel) panel.classList.add('hidden');
           if (headerBtn) headerBtn.textContent = '▼ Visa Team-synk';
         }
+        if (configStore.get('tradgard_top_collapsed') === '1') {
+          applyTopSectionCollapse(true);
+        }
       } catch (e) {}
 
       updateTeamSyncLockUI();
@@ -3089,31 +2744,56 @@
       if (el) el.classList.remove('hidden');
     }
 
-    function toggleTopSectionCollapse() {
-      state.topSectionCollapsed = !state.topSectionCollapsed;
+    function applyTopSectionCollapse(collapsed) {
+      state.topSectionCollapsed = Boolean(collapsed);
+      configStore.set('tradgard_top_collapsed', state.topSectionCollapsed ? '1' : '0');
       const topSection = document.getElementById('top-section-collapsible');
       const btn = document.getElementById('btn-collapse-top');
       if (topSection) {
         topSection.classList.toggle('collapsed', state.topSectionCollapsed);
       }
       if (btn) {
-        btn.textContent = state.topSectionCollapsed ? '▼ Visa topp' : '▲ Dölj topp';
+        btn.textContent = state.topSectionCollapsed ? '🔑 Visa topp' : '🔒 Dölj topp';
       }
     }
 
-    function toggleMobilePreview() {
-      state.mobilePreview = !state.mobilePreview;
-      document.body.classList.toggle('mobile-preview-mode', state.mobilePreview);
-      const btn = document.getElementById('btn-toggle-mobile-preview');
-      if (btn) {
-        btn.classList.toggle('active', state.mobilePreview);
-        btn.innerHTML = state.mobilePreview ? '🖥️ Tillbaka till datorvy' : '📱 Visa som mobil';
+    function toggleTopSectionCollapse() {
+      const pw = getStoredTeamSyncPassword();
+
+      if (!state.topSectionCollapsed) {
+        // Användaren vill DÖLJA toppen
+        if (!pw) {
+          // Be användaren skapa ett lösenord första gången så toppen blir låst när den döljs
+          pendingUnlockAction = 'hideTop';
+          teamSyncPwModalMode = 'set';
+          document.getElementById('teamsync-pw-title').textContent = '🔒 Skapa lösenord & Dölj topp';
+          document.getElementById('teamsync-pw-desc').textContent = 'Välj ett lösenord innan du döljer toppen. Då krävs lösenordet för att öppna verktygsfältet igen i telefonläge.';
+          document.getElementById('teamsync-pw-confirm-wrap').classList.remove('hidden');
+          document.getElementById('btn-remove-teamsync-pw').classList.add('hidden');
+          document.getElementById('btn-submit-teamsync-pw').textContent = '🔒 Spara & Dölj topp';
+          document.getElementById('teamsync-pw-input').value = '';
+          document.getElementById('teamsync-pw-confirm').value = '';
+          openModal('modal-teamsync-password');
+          setTimeout(() => document.getElementById('teamsync-pw-input').focus(), 50);
+          return;
+        }
+        // Lås sessionen automatiskt när toppen döljs så att den kräver lösenord för att öppnas igen
+        isTeamSyncUnlockedSession = false;
+        updateTeamSyncLockUI();
+        applyTopSectionCollapse(true);
+        showToast('Toppmeny dold & låst! 🔒');
+      } else {
+        // Användaren vill VISA toppen igen
+        if (pw && isTeamSyncLocked()) {
+          openUnlockTeamSyncModal('showTop');
+          return;
+        }
+        applyTopSectionCollapse(false);
       }
-      renderCustomerCards();
     }
 
     function isCompactMobileView() {
-      return state.mobilePreview || window.innerWidth <= 640;
+      return window.innerWidth <= 640;
     }
 
     function toggleCompletedExpand(customerId) {
@@ -3694,53 +3374,6 @@
       closeModal('modal-new-customer');
       renderAll();
       showToast(`Kunden "${name}" lades till!`);
-    }
-
-    function openDataTransferModal() {
-      const payload = JSON.stringify({
-        exportedAt: new Date().toISOString(),
-        customers: state.customers
-      }, null, 2);
-      document.getElementById('transfer-textarea').value = payload;
-      openModal('modal-data-transfer');
-    }
-
-    function copyDataToClipboard() {
-      const ta = document.getElementById('transfer-textarea');
-      ta.select();
-      ta.setSelectionRange(0, 999999);
-      let ok = false;
-      try {
-        ok = document.execCommand('copy');
-      } catch (e) {}
-      if (ok) {
-        showToast('All kunddata kopierad till urklipp! 📋');
-      } else {
-        showToast('Markera texten i rutan och tryck Ctrl+C / Kopiera.');
-      }
-    }
-
-    function importPastedData() {
-      const rawText = document.getElementById('transfer-textarea').value.trim();
-      if (!rawText) {
-        showToast('Klistra in datatext i rutan först.');
-        return;
-      }
-      try {
-        const parsed = JSON.parse(rawText);
-        const list = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.customers) ? parsed.customers : null);
-        if (!list || list.length === 0) {
-          showToast('Kunde inte hitta någon giltig kundlista i texten.');
-          return;
-        }
-        state.customers = list.map((c, idx) => normalizeCustomer(c, idx));
-        saveState();
-        closeModal('modal-data-transfer');
-        renderAll();
-        showToast(`Läste in ${state.customers.length} kunder! ✓`);
-      } catch (e) {
-        showToast('Ogiltigt format – kontrollera att hela JSON-texten är inklistrad.');
-      }
     }
 
     function downloadJsonBackup() {
@@ -4990,10 +4623,6 @@
 
     function logMobileAction(msg) {
       console.log(msg);
-      const logEl = document.getElementById('mobile-debug-log');
-      if (logEl) {
-        logEl.textContent = `📱 [${new Date().toLocaleTimeString()}] ${msg}`;
-      }
     }
   </script>
 </body>
