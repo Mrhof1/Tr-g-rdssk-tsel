@@ -957,12 +957,6 @@
           <button type="button" id="btn-toggle-keys" class="btn-secondary btn-sm" onclick="toggleInlineJsonBinBox()">
             ✏️ Visa / Dölj nycklar
           </button>
-          <button type="button" id="btn-copy-team-url" class="btn-primary btn-sm" onclick="copyTeamShareUrl()">
-            📲 Kopiera team-länk
-          </button>
-          <button type="button" class="btn-secondary btn-sm" onclick="forceCloudSyncNow()">
-            🔄 Synka nu
-          </button>
           <button type="button" class="btn-secondary btn-sm" onclick="toggleTeamSyncPanel()" title="Dölj hela Team-synk-fönstret">
             ▲ Dölj fönster
           </button>
@@ -972,7 +966,7 @@
       <!-- LÅST VY (VISAS NÄR LÖSENORDSSKYDD ÄR AKTIVT) -->
       <div id="teamsync-locked-notice" class="hidden" style="background:#ffffff; border:1px solid var(--border); border-radius:8px; padding:10px; margin-bottom:8px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px;">
         <span style="font-size:0.82rem; color:var(--text-muted);">
-          🔒 <strong>Inställningarna är lösenordsskyddade.</strong> Synkningen körs automatiskt i bakgrunden. Lås upp för att ändra nycklar eller kopiera team-länk.
+          🔒 <strong>Inställningarna är lösenordsskyddade.</strong> Synkningen körs automatiskt i bakgrunden. Lås upp för att ändra nycklar.
         </span>
         <button type="button" class="btn-primary btn-sm" onclick="openUnlockTeamSyncModal()">
           🔑 Lås upp inställningar
@@ -986,7 +980,7 @@
           <input type="text" id="inline-bin-id" class="form-input" style="min-height:36px; padding:6px 10px; background:#f8fafc;" placeholder="Klistra in Bin ID här..." onclick="this.focus()">
         </div>
         <div>
-          <label for="inline-api-key" style="display:block; font-size:0.78rem; font-weight:700; margin-bottom:3px;">2. API-nyckel (Master Key / Access Key):</label>
+          <label for="inline-api-key" style="display:block; font-size:0.78rem; font-weight:700; margin-bottom:3px;">2. API-nyckel (X-Master-Key / X-Access-Key):</label>
           <input type="text" id="inline-api-key" class="form-input" style="min-height:36px; padding:6px 10px; background:#f8fafc;" placeholder="Klistra in Master eller Access Key..." onclick="this.focus()">
         </div>
         <div style="display:flex; gap:6px;">
@@ -1012,9 +1006,6 @@
         <div class="app-subtitle" id="header-summary">Laddar kundöversikt...</div>
       </div>
       <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-        <button type="button" class="btn-secondary btn-sm" style="background:rgba(255,255,255,0.25); border:none; color:#fff; min-height:32px; padding:4px 10px; font-size:0.8rem;" onclick="forceCloudSyncNow()" title="Tvinga molnsynk nu">
-          🔄 Synka nu
-        </button>
         <button type="button" class="btn-secondary btn-sm" style="background:rgba(255,255,255,0.2); border:none; color:#fff; min-height:34px; padding:4px 10px; font-size:0.8rem; cursor:pointer;" onclick="toggleTeamSyncPanel()" id="btn-toggle-teamsync">
           ▲ Dölj Team-synk
         </button>
@@ -1057,20 +1048,13 @@
           <button type="button" class="btn-secondary" onclick="downloadJsonBackup()">
             💾 Spara fil (.json)
           </button>
-          <button type="button" class="btn-secondary" onclick="triggerJsonFileOpen()">
-            📂 Öppna fil
-          </button>
           <button type="button" class="btn-secondary" onclick="exportCsv()">
             📊 Exportera Excel (.csv)
           </button>
-          <button type="button" class="btn-blue" onclick="openCloudModal()">
-            ☁️ Moln &amp; Konto
-          </button>
-          <button type="button" class="btn-danger-soft" onclick="openResetModal()">
-            🔄 Återställ standard
+          <button type="button" class="btn-secondary" onclick="openModal('modal-sync-guide')" title="Visa guide för GitHub, JSONBin, backup och knappar">
+            📖 Synk &amp; GitHub
           </button>
         </div>
-        <input type="file" id="json-file-input" accept=".json,application/json" class="hidden" onchange="handleJsonFileSelected(event)">
       </section>
 
       <!-- SEARCH & FILTER PANEL -->
@@ -1345,7 +1329,7 @@
         <ol style="padding-left:18px; font-size:0.86rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
           <li>Klicka på knappen <strong>💾 Spara fil (.json)</strong> bland huvudverktygen.</li>
           <li>En fil (t.ex. <code style="background:#eef3ef; padding:2px 4px; border-radius:4px;">tradgard-kunder-2026-11-16.json</code>) laddas då omedelbart ned till din dators Hämtade filer / Downloads-mapp.</li>
-          <li>Du kan när som helst läsa in filen igen genom att klicka på <strong>📂 Öppna fil</strong> om du byter enhet eller vill återställa.</li>
+          <li>Du sparar filen på en säker plats som en extra lokal säkerhetskopia.</li>
         </ol>
       </div>
       <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
@@ -1356,41 +1340,57 @@
   </div>
 
   <!-- MODAL: ONLINE / SYNK INFO -->
-  <div id="modal-online-help" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="online-modal-title">
+  <div id="modal-sync-guide" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="sync-guide-title">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="online-modal-title">🌐 Köra online &amp; göra ändringar</h3>
-        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-online-help')">✕</button>
+        <h3 id="sync-guide-title">📖 Kom-ihåg-lista: GitHub, JSONBin &amp; Synk</h3>
+        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-sync-guide')">✕</button>
       </div>
-      <p style="font-size:0.9rem; color:var(--text-main); line-height:1.5;">
-        Ja, absolut! Om du publicerar eller sparar ner den här filen på en egen webbserver, molntjänst (t.ex. GitHub Pages, Netlify, Dropbox eller Google Drive) så att du kan nå den via din mobils webbläsare, <strong>kan du göra ändringar, bocka av och lägga till kunder precis som vanligt direkt i mobilen!</strong>
+      <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">
+        Här är en samlad översikt över hur allt hänger ihop och vad som är bra att komma ihåg när du uppdaterar koden eller bjuder in nya telefoner:
       </p>
-      <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; gap:8px;">
-        <div style="font-weight:700; color:var(--primary); font-size:0.9rem;">Bra att veta om sparande:</div>
-        <ul style="padding-left:18px; font-size:0.86rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
-          <li>Appen sparar automatiskt alla dina bockningar och ändringar i webbläsarens lokala minne (<i>localStorage</i>) på den enhet du använder för stunden.</li>
-          <li>Om du byter mellan dator och mobil kan du enkelt använda <strong>💾 Spara fil (.json)</strong> på ena enheten och <strong>📂 Öppna fil</strong> på den andra för att hålla allt synkat!</li>
-        </ul>
-      </div>
-      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
-        <button type="button" class="btn-primary" onclick="closeModal('modal-online-help')">Förstått ✓</button>
-      </div>
-    </div>
-  </div>
 
-  <!-- MODAL: BEKRÄFTA ÅTERSTÄLLNING -->
-  <div id="modal-reset" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="reset-modal-title">🔄 Återställ till standardlista?</h3>
-        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-reset')">✕</button>
+      <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; gap:10px; font-size:0.85rem;">
+        <div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">1. 🐙 GitHub (Själva appens kod &amp; webbadress)</div>
+          <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
+            <li>När du gör ändringar i koden här och klistrar in i <code>index.html</code> på GitHub uppdateras appen automatiskt för alla i teamet när de laddar om sidan.</li>
+            <li><strong>Viktigt:</strong> Uppdateringar på GitHub ändrar bara utseendet och funktionerna – era kunder och bockningar ligger tryggt sparade i molnet (JSONBin.io) och påverkas inte.</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">2. ☁️ JSONBin.io (Gemensam kunddatabas i molnet)</div>
+          <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
+            <li>Appen synkar automatiskt med JSONBin.io var 15:e sekund samt direkt när någon bockar av eller ändrar något.</li>
+            <li>På en <strong>ny mobil/dator</strong>: Öppna Team-synk-rutan längst upp, klistra in ert <strong>Bin ID</strong> och er <strong>API-nyckel</strong> och klicka på <em>Spara &amp; Anslut</em>.</li>
+            <li><strong>Viktigt om API-nyckel:</strong> Använd <strong>X-Master-Key</strong> (fungerar alltid direkt). Om du använder en <em>X-Access-Key</em> måste den ha behörighet för både <strong>Read</strong> och <strong>Update</strong> på er Bin (inte bara Create).</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">3. 🔒 Lösenord &amp; Telefonläge</div>
+          <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
+            <li>Klicka på <strong>🔒 Dölj topp</strong> uppe i gröna rubriken för att låsa och dölja verktygsfältet på telefonen – då visas bara kundkorten så ingen ändrar scheman av misstag.</li>
+            <li>Lösenordet sparas lokalt i webbläsaren på den enhet där du ställer in det.</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">4. 💾 Säkerhetskopia (.json) &amp; Excel (.csv)</div>
+          <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
+            <li><strong>💾 Spara fil (.json):</strong> Laddar ner en komplett säkerhetskopia av hela kundlistan, koder och scheman till din enhet som extra trygghet utöver molnet.</li>
+            <li><strong>📊 Exportera Excel (.csv):</strong> Skapar en tabellfil som kan öppnas direkt i Excel för överblick eller utskrift.</li>
+          </ul>
+        </div>
       </div>
-      <p style="font-size:0.9rem; color:var(--text-main);">
-        Detta återställer de 53 standardkunderna och nollställer alla markeringar. Vill du fortsätta?
-      </p>
-      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
-        <button type="button" class="btn-secondary" onclick="closeModal('modal-reset')">Avbryt</button>
-        <button type="button" class="btn-danger-soft" onclick="confirmResetDefault()">Ja, återställ standard</button>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:4px; flex-wrap:wrap;">
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-sync-guide'); forceCloudSyncNow();">🔄 Tvinga synk nu</button>
+          <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-sync-guide'); openCloudModal();">⚙️ JSONBin-inställningar</button>
+        </div>
+        <button type="button" class="btn-primary" onclick="closeModal('modal-sync-guide')">Förstått ✓</button>
       </div>
     </div>
   </div>
@@ -1417,8 +1417,8 @@
         <div style="background:#ffffff; border:1px solid var(--primary-border); border-radius:8px; padding:10px; font-size:0.8rem; color:var(--text-main); line-height:1.4;">
           <div style="font-weight:700; color:var(--primary); margin-bottom:4px;">💡 Skillnad på X-Master-Key och X-Access-Key:</div>
           <ul style="padding-left:16px; margin:0; display:flex; flex-direction:column; gap:3px; color:var(--text-muted);">
-            <li><strong>X-Master-Key:</strong> Huvudnyckeln till hela ditt konto (full behörighet till allt). Om du klistrat in denna kvittar det vilka rutor som var i্বকryssade, eftersom den alltid har full tillgång.</li>
-            <li><strong>X-Access-Key:</strong> En specifik åtkomstnyckel. Om du skapat en sådan och <strong>bockat i alla behörighetsrutor</strong> (läsa, skriva, uppdatera bin) fungerar den helt utmärkt för appens synk!</li>
+            <li><strong>X-Master-Key (Rekommenderas):</strong> Huvudnyckeln till hela ditt konto. Fungerar alltid direkt utan extra inställningar.</li>
+            <li><strong>X-Access-Key:</strong> Kräver att nyckeln har skapats med behörigheterna <strong>Bins → Read</strong> och <strong>Bins → Update</strong> på jsonbin.io, annars nekar servern anslutningen (HTTP 401/403).</li>
           </ul>
         </div>
 
@@ -1434,15 +1434,6 @@
           <button type="button" class="btn-primary btn-sm" onclick="saveJsonBinConfig()">💾 Spara &amp; Anslut Moln</button>
           <button type="button" class="btn-secondary btn-sm" onclick="disconnectJsonBin()">Koppla från</button>
         </div>
-      </div>
-
-      <!-- Steg 2: Dela länk till teamets mobiler -->
-      <div style="background:var(--primary-soft); border:1px solid var(--primary-border); border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; gap:8px;">
-        <div style="font-weight:800; font-size:0.9rem; color:var(--primary-hover);">2. Dela med teamets mobiler (iPhone &amp; Android)</div>
-        <p style="font-size:0.8rem; color:var(--text-main);">
-          När du har anslutit ovan, klicka på knappen nedan och skicka länken i er SMS-/WhatsApp-grupp. Alla som öppnar länken kopplas in automatiskt!
-        </p>
-        <button type="button" class="btn-primary btn-sm" onclick="copyTeamShareUrl()">📲 Kopiera team-länk till iPhone &amp; Android</button>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; color:var(--text-muted);">
@@ -1491,6 +1482,27 @@
     <button type="button" id="toast-undo-btn" class="toast-undo-btn hidden" onclick="triggerToastUndo()">Ångra</button>
   </div>
 
+  <!-- START-SPÄRR / LÖSENORDSSKYDD FÖR HELA SIDAN -->
+  <div id="app-lock-screen" class="modal-backdrop hidden" style="z-index:9999; background:linear-gradient(135deg, #174e30 0%, #236b43 100%);">
+    <div class="modal-box" style="max-width:400px; text-align:center;">
+      <div style="font-size:2.4rem; margin-bottom:4px;">🌿🔒</div>
+      <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-main);">Trädgårdsskötsel</h2>
+      <p id="app-lock-desc" style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">
+        Ange lösenord för att öppna kundlistan och arbetsschemat.
+      </p>
+      <div style="text-align:left; margin-top:8px;">
+        <label for="app-lock-input" style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:4px;">Lösenord:</label>
+        <input type="password" id="app-lock-input" class="form-input" placeholder="Skriv lösenord..." onkeydown="if(event.key==='Enter') unlockWholeApp()">
+      </div>
+      <div id="app-lock-error" style="color:var(--danger); font-size:0.82rem; font-weight:700; display:none;">
+        Fel lösenord! Försök igen.
+      </div>
+      <button type="button" class="btn-primary" style="width:100%; margin-top:6px;" onclick="unlockWholeApp()">
+        🔓 Öppna appen
+      </button>
+    </div>
+  </div>
+
   <!-- JSONBIN.IO TEAM-SYNK (ERSÄTTER GAMLA SYNK-PROGRAM) -->
   <script>
     const JSONBIN_CFG_KEY = 'tradgard_jsonbin_config_v1';
@@ -1501,6 +1513,7 @@
     let lastKnownUpdatedAt = '';
     let isSavingToJsonBin = false;
     let isTeamSyncUnlockedSession = false;
+    let isAppUnlockedSession = false;
     let teamSyncPwModalMode = 'set'; // 'set' | 'unlock'
     let pendingUnlockAction = 'teamsync'; // 'teamsync' | 'showTop'
 
@@ -1566,7 +1579,6 @@
       const lockedNotice = document.getElementById('teamsync-locked-notice');
       const inlineSetup = document.getElementById('inline-jsonbin-setup');
       const toggleKeysBtn = document.getElementById('btn-toggle-keys');
-      const copyUrlBtn = document.getElementById('btn-copy-team-url');
       const debugIdEl = document.getElementById('debug-user-id');
 
       if (!pw) {
@@ -1574,14 +1586,12 @@
         if (lockToggleBtn) lockToggleBtn.textContent = '🔒 Lås med lösenord';
         if (lockedNotice) lockedNotice.classList.add('hidden');
         if (toggleKeysBtn) toggleKeysBtn.classList.remove('hidden');
-        if (copyUrlBtn) copyUrlBtn.classList.remove('hidden');
       } else if (locked) {
         if (badge) { badge.textContent = '🔒 Låst'; badge.className = 'badge badge-2v'; }
         if (lockToggleBtn) lockToggleBtn.textContent = '🔑 Lås upp';
         if (lockedNotice) lockedNotice.classList.remove('hidden');
         if (inlineSetup) inlineSetup.classList.add('hidden');
         if (toggleKeysBtn) toggleKeysBtn.classList.add('hidden');
-        if (copyUrlBtn) copyUrlBtn.classList.add('hidden');
         if (debugIdEl && debugIdEl.textContent !== 'Ej kopplad') {
           debugIdEl.textContent = '•••••••• (Låst)';
         }
@@ -1590,7 +1600,6 @@
         if (lockToggleBtn) lockToggleBtn.textContent = '🔒 Lås nu';
         if (lockedNotice) lockedNotice.classList.add('hidden');
         if (toggleKeysBtn) toggleKeysBtn.classList.remove('hidden');
-        if (copyUrlBtn) copyUrlBtn.classList.remove('hidden');
         const cfg = getJsonBinConfig();
         if (debugIdEl) debugIdEl.textContent = cfg ? cfg.binId : 'Ej kopplad';
       }
@@ -1602,7 +1611,7 @@
         // Öppna dialog för att skapa nytt lösenord
         teamSyncPwModalMode = 'set';
         document.getElementById('teamsync-pw-title').textContent = '🔒 Lösenordsskydda Team-synk';
-        document.getElementById('teamsync-pw-desc').textContent = 'Välj ett lösenord för att låsa Team-synk-inställningarna så att ingen ändrar nycklar eller kopierar team-länken utan behörighet.';
+        document.getElementById('teamsync-pw-desc').textContent = 'Välj ett lösenord för att låsa Team-synk-inställningarna så att ingen ändrar nycklar utan behörighet.';
         document.getElementById('teamsync-pw-confirm-wrap').classList.remove('hidden');
         document.getElementById('btn-remove-teamsync-pw').classList.add('hidden');
         document.getElementById('btn-submit-teamsync-pw').textContent = '🔒 Spara & Lås';
@@ -1698,63 +1707,39 @@
       showToast('Lösenordsskyddet är borttaget.');
     };
 
-    window.openUnlockTeamSyncModal = function() {
-      teamSyncPwModalMode = 'unlock';
-      document.getElementById('teamsync-pw-title').textContent = '🔑 Lås upp Team-synk';
-      document.getElementById('teamsync-pw-desc').textContent = 'Ange lösenordet för att visa eller ändra Team-synk-inställningarna.';
-      document.getElementById('teamsync-pw-confirm-wrap').classList.add('hidden');
-      document.getElementById('btn-remove-teamsync-pw').classList.remove('hidden');
-      document.getElementById('btn-submit-teamsync-pw').textContent = '🔓 Lås upp';
-      document.getElementById('teamsync-pw-input').value = '';
-      openModal('modal-teamsync-password');
-      setTimeout(() => document.getElementById('teamsync-pw-input').focus(), 50);
-    };
-
-    window.submitTeamSyncPassword = function() {
-      const pwInput = (document.getElementById('teamsync-pw-input').value || '').trim();
-      if (!pwInput) {
-        showToast('Ange ett lösenord först.');
-        return;
-      }
-
-      if (teamSyncPwModalMode === 'set') {
-        const confirmInput = (document.getElementById('teamsync-pw-confirm').value || '').trim();
-        if (pwInput !== confirmInput) {
-          showToast('Lösenorden matchar inte – försök igen.');
-          return;
-        }
-        configStore.set(TEAMSYNC_PW_KEY, pwInput);
-        isTeamSyncUnlockedSession = false;
-        closeModal('modal-teamsync-password');
-        updateTeamSyncLockUI();
-        showToast('Team-synk är nu lösenordsskyddad! 🔒');
+    function checkAppLockOnStart() {
+      const pw = getStoredTeamSyncPassword();
+      const lockScreen = document.getElementById('app-lock-screen');
+      if (!lockScreen) return;
+      if (pw && !isAppUnlockedSession) {
+        lockScreen.classList.remove('hidden');
+        setTimeout(() => {
+          const inp = document.getElementById('app-lock-input');
+          if (inp) inp.focus();
+        }, 80);
       } else {
-        const stored = getStoredTeamSyncPassword();
-        if (pwInput === stored) {
-          isTeamSyncUnlockedSession = true;
-          closeModal('modal-teamsync-password');
-          updateTeamSyncLockUI();
-          const inlineSetup = document.getElementById('inline-jsonbin-setup');
-          if (inlineSetup) inlineSetup.classList.remove('hidden');
-          showToast('Team-synk upplåst! 🔓');
-        } else {
-          showToast('Fel lösenord! Försök igen.');
+        lockScreen.classList.add('hidden');
+      }
+    }
+
+    window.unlockWholeApp = function() {
+      const pw = getStoredTeamSyncPassword();
+      const inp = document.getElementById('app-lock-input');
+      const errEl = document.getElementById('app-lock-error');
+      const entered = (inp ? inp.value : '').trim();
+      if (!pw || entered === pw) {
+        isAppUnlockedSession = true;
+        if (errEl) errEl.style.display = 'none';
+        const lockScreen = document.getElementById('app-lock-screen');
+        if (lockScreen) lockScreen.classList.add('hidden');
+        showToast('Välkommen in! 🌿');
+      } else {
+        if (errEl) errEl.style.display = 'block';
+        if (inp) {
+          inp.value = '';
+          inp.focus();
         }
       }
-    };
-
-    window.removeTeamSyncPassword = function() {
-      const pwInput = (document.getElementById('teamsync-pw-input').value || '').trim();
-      const stored = getStoredTeamSyncPassword();
-      if (pwInput !== stored) {
-        showToast('Skriv in rätt lösenord i rutan ovan för att ta bort skyddet.');
-        return;
-      }
-      configStore.set(TEAMSYNC_PW_KEY, '');
-      isTeamSyncUnlockedSession = false;
-      closeModal('modal-teamsync-password');
-      updateTeamSyncLockUI();
-      showToast('Lösenordsskyddet för Team-synk är borttaget.');
     };
 
     function getJsonBinConfig() {
@@ -1806,32 +1791,6 @@
         console.debug('Kunde inte läsa team-länk:', e);
       }
     }
-
-    window.copyTeamShareUrl = function() {
-      if (isTeamSyncLocked()) {
-        openUnlockTeamSyncModal();
-        showToast('Lås upp Team-synk först för att kopiera team-länken.');
-        return;
-      }
-      const cfg = getJsonBinConfig();
-      if (!cfg) {
-        showToast('Fyll i och spara Bin ID + API-nyckel först.');
-        return;
-      }
-      const payload = JSON.stringify({ binId: cfg.binId, apiKey: cfg.apiKey });
-      const encoded = btoa(unescape(encodeURIComponent(payload)));
-      const baseUrl = window.location.href.split('#')[0];
-      const shareUrl = `${baseUrl}#team=${encoded}`;
-
-      const tempInput = document.createElement('textarea');
-      tempInput.value = shareUrl;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-
-      showToast('Team-länk kopierad! Skicka länken till teamets iPhones & Android-mobiler. 📲');
-    };
 
     window.saveJsonBinConfig = async function() {
       if (isTeamSyncLocked()) {
@@ -1909,19 +1868,50 @@
       }
       configStore.set(JSONBIN_CFG_KEY, '');
       syncUrlHashWithConfig(null);
-      if (jsonBinPollTimer) clearInterval(jsonBinPollTimer);
+      if (jsonBinPollTimer) {
+        clearInterval(jsonBinPollTimer);
+        jsonBinPollTimer = null;
+      }
       isCloudSyncing = false;
-      const mBin = document.getElementById('jsonbin-id-input');
-      const mKey = document.getElementById('jsonbin-key-input');
-      const iBin = document.getElementById('inline-bin-id');
-      const iKey = document.getElementById('inline-api-key');
-      if (mBin) mBin.value = '';
-      if (mKey) mKey.value = '';
-      if (iBin) iBin.value = '';
-      if (iKey) iKey.value = '';
+      const ids = ['jsonbin-id-input', 'jsonbin-key-input', 'inline-bin-id', 'inline-api-key'];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
       window.initCloudSync();
-      showToast('Molnsynk frånkopplad. Kör nu lokalt.');
+      showToast('Molnsynk frånkopplad.');
     };
+
+    function buildJsonBinHeaders(apiKey, includeJsonContentType = false) {
+      const headers = {};
+      if (includeJsonContentType) {
+        headers['Content-Type'] = 'application/json';
+      }
+      // JSONBin avvisar ibland anrop om BÅDE X-Master-Key och X-Access-Key skickas samtidigt.
+      // Vi provar först som X-Master-Key, och faller tillbaka till X-Access-Key vid 401/403.
+      headers['X-Master-Key'] = apiKey;
+      return headers;
+    }
+
+    async function jsonBinFetchWithKeyFallback(url, optionsBase, apiKey) {
+      const resMaster = await fetch(url, {
+        ...optionsBase,
+        headers: {
+          ...(optionsBase.headers || {}),
+          'X-Master-Key': apiKey
+        }
+      });
+      if (resMaster.status === 401 || resMaster.status === 403) {
+        return await fetch(url, {
+          ...optionsBase,
+          headers: {
+            ...(optionsBase.headers || {}),
+            'X-Access-Key': apiKey
+          }
+        });
+      }
+      return resMaster;
+    }
 
     async function fetchFromJsonBin(cfg, isInitialLoad = false) {
       if (!cfg || isSavingToJsonBin) return;
@@ -1931,14 +1921,16 @@
       const debugStatusEl = document.getElementById('debug-status-text');
 
       try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${encodeURIComponent(cfg.binId)}/latest`, {
-          method: 'GET',
-          headers: {
-            'X-Master-Key': cfg.apiKey,
-            'X-Access-Key': cfg.apiKey,
-            'X-Bin-Meta': 'false'
-          }
-        });
+        const res = await jsonBinFetchWithKeyFallback(
+          `https://api.jsonbin.io/v3/b/${encodeURIComponent(cfg.binId)}/latest`,
+          {
+            method: 'GET',
+            headers: {
+              'X-Bin-Meta': 'false'
+            }
+          },
+          cfg.apiKey
+        );
 
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}`);
@@ -2060,15 +2052,17 @@
 
       isSavingToJsonBin = true;
       try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${encodeURIComponent(cfg.binId)}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Master-Key': cfg.apiKey,
-            'X-Access-Key': cfg.apiKey
+        const res = await jsonBinFetchWithKeyFallback(
+          `https://api.jsonbin.io/v3/b/${encodeURIComponent(cfg.binId)}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(statePayload)
           },
-          body: JSON.stringify(statePayload)
-        });
+          cfg.apiKey
+        );
 
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}`);
@@ -2149,6 +2143,7 @@
 
       loadState();
       renderAll();
+      checkAppLockOnStart();
       logMobileAction('Appen startad och redo på PWA / iOS!');
 
       let touchTime = 0;
@@ -3393,35 +3388,6 @@
       showToast('Säkerhetskopia (.json) sparad! 💾');
     }
 
-    function triggerJsonFileOpen() {
-      const inp = document.getElementById('json-file-input');
-      inp.value = '';
-      inp.click();
-    }
-
-    function handleJsonFileSelected(event) {
-      const file = event.target.files && event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        try {
-          const parsed = JSON.parse(String(e.target.result || ''));
-          const list = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.customers) ? parsed.customers : null);
-          if (!list || list.length === 0) {
-            showToast('Filen innehöll ingen giltig kundlista.');
-            return;
-          }
-          state.customers = list.map((c, idx) => normalizeCustomer(c, idx));
-          saveState();
-          renderAll();
-          showToast(`Läste in ${state.customers.length} kunder från fil! ✓`);
-        } catch (err) {
-          showToast('Kunde inte läsa filen – ogiltig JSON.');
-        }
-      };
-      reader.readAsText(file, 'utf-8');
-    }
-
     function exportCsv() {
       const headers = ['Nr', 'Kund', 'Status', 'Veckoskötsel', ...SEASONAL_TASKS.map(t => t.label)];
       const weekLabelMap = Object.fromEntries(WEEK_OPTIONS.map(o => [o.value, o.label]));
@@ -3459,10 +3425,6 @@
       showToast('Excel-fil (.csv) exporterad! 📊');
     }
 
-    function openResetModal() {
-      openModal('modal-reset');
-    }
-
     function openCloudModal() {
       if (typeof isTeamSyncLocked === 'function' && isTeamSyncLocked()) {
         openUnlockTeamSyncModal();
@@ -3470,18 +3432,6 @@
         return;
       }
       openModal('modal-cloud');
-    }
-
-    function confirmResetDefault() {
-      state.customers = buildDefaultCustomers();
-      state.activeFilter = 'all_active';
-      state.searchQuery = '';
-      document.getElementById('search-input').value = '';
-      document.getElementById('clear-search-btn').classList.add('hidden');
-      saveState();
-      closeModal('modal-reset');
-      renderAll();
-      showToast('Standardlistan med 53 kunder är återställd.');
     }
 
     function getFilteredCustomers() {
