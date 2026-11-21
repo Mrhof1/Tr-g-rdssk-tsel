@@ -1051,8 +1051,8 @@
           <button type="button" class="btn-secondary" onclick="exportCsv()">
             📊 Exportera Excel (.csv)
           </button>
-          <button type="button" class="btn-secondary" onclick="openModal('modal-sync-guide')" title="Visa guide för GitHub, JSONBin, backup och knappar">
-            📖 Synk &amp; GitHub
+          <button type="button" class="btn-secondary" style="background:var(--primary-soft); border-color:var(--primary-border); color:var(--primary-hover);" onclick="openModal('modal-sync-guide')" title="Visa guide för knappar, veckoschema, GitHub och molnsynk">
+            📖 Guide &amp; Synk
           </button>
         </div>
       </section>
@@ -1314,73 +1314,66 @@
     </div>
   </div>
 
-  <!-- MODAL: SPARAR LOKALT / HJÄLP -->
-  <div id="modal-save-backup-help" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="backup-modal-title">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="backup-modal-title">💾 Spara ner backup lokalt på datorn</h3>
-        <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-save-backup-help')">✕</button>
-      </div>
-      <p style="font-size:0.9rem; color:var(--text-main); line-height:1.5;">
-        Det enklaste och säkraste sättet att spara en kopia av alla dina kunder och bockningar direkt på din dator är att använda knappen <strong>"💾 Spara fil (.json)"</strong> som finns uppe i verktygsfältet.
-      </p>
-      <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; gap:8px;">
-        <div style="font-weight:700; color:var(--primary); font-size:0.9rem;">Gör så här:</div>
-        <ol style="padding-left:18px; font-size:0.86rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
-          <li>Klicka på knappen <strong>💾 Spara fil (.json)</strong> bland huvudverktygen.</li>
-          <li>En fil (t.ex. <code style="background:#eef3ef; padding:2px 4px; border-radius:4px;">tradgard-kunder-2026-11-16.json</code>) laddas då omedelbart ned till din dators Hämtade filer / Downloads-mapp.</li>
-          <li>Du sparar filen på en säker plats som en extra lokal säkerhetskopia.</li>
-        </ol>
-      </div>
-      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
-        <button type="button" class="btn-primary" onclick="downloadJsonBackup(); closeModal('modal-save-backup-help');">💾 Ladda ner fil nu (.json)</button>
-        <button type="button" class="btn-secondary" onclick="closeModal('modal-save-backup-help')">Stäng</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: ONLINE / SYNK INFO -->
+  <!-- MODAL: ONLINE / SYNK INFO & FUNKTIONSGUIDE -->
   <div id="modal-sync-guide" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="sync-guide-title">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width:620px;">
       <div class="modal-header">
-        <h3 id="sync-guide-title">📖 Kom-ihåg-lista: GitHub, JSONBin &amp; Synk</h3>
+        <h3 id="sync-guide-title">📖 Guide &amp; Synk</h3>
         <button type="button" class="btn-secondary btn-sm" onclick="closeModal('modal-sync-guide')">✕</button>
       </div>
       <p style="font-size:0.88rem; color:var(--text-main); line-height:1.5;">
-        Här är en samlad översikt över hur allt hänger ihop och vad som är bra att komma ihåg när du uppdaterar koden eller bjuder in nya telefoner:
+        Här är en samlad kom-ihåg-lista över hur alla verktyg, scheman och molnsynk fungerar:
       </p>
 
-      <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; gap:10px; font-size:0.85rem;">
+      <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; gap:12px; font-size:0.85rem;">
         <div>
-          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">1. 🐙 GitHub (Själva appens kod &amp; webbadress)</div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:4px;">🛠️ Del 1: Så fungerar knapparna &amp; verktygen</div>
+          <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+            <li>
+              <strong>📅 Veckoschema (Körlista):</strong> Visar veckans färdiga körlista utifrån alla kunders inställda intervall (1/V, 2/V Jämn/Udda, 3/V eller 1/Månad). Här bockar ni av varje kund när veckans skötsel är klar. Bläddra framåt/bakåt för att planera kommande veckor.
+            </li>
+            <li>
+              <strong>⚙️ Ställ in Veckoskötsel:</strong> Här ställer du in hur ofta varje kund ska ha skötsel. Du kan dela upp säsongen i <strong>Period 1</strong> (t.ex. startar automatiskt när Vårstädningen bockas av) och <strong>Period 2</strong> (t.ex. glesare intervall på hösten). Kryssa i flera kunder längst upp för att tilldela samma schema till många samtidigt.
+            </li>
+            <li>
+              <strong>🔄 Återkommande skötsel:</strong> Kalendervy för <em>Gräsklippning</em> (varje eller varannan vecka), <em>Trädgårdsgödning</em> &amp; <em>Gräsmattagödning</em> (räknar automatiskt var 6:e vecka från vald startvecka) samt <em>Sprutning</em>.
+            </li>
+            <li>
+              <strong>✂️ Ställ in Häckklippning (1x / 2x):</strong> Snabbval för att ange om en kund ska ha 1 eller 2 häckklippningar per säsong. Vid <strong>2x</strong> får kundkortet två separata knappar: <em>Omgång 1</em> och <em>Omgång 2</em>.
+            </li>
+            <li>
+              <strong>📋 Master-vy (Matris):</strong> Hela kundlistan och alla arbetsmoment i en enda stor tabell. Klicka direkt i en ruta för att växla mellan <strong>— (Ej aktuellt)</strong> → <strong>Kvar</strong> → <strong>Klart ✓</strong>. Perfekt vid datorn för snabb överblick.
+            </li>
+            <li>
+              <strong>⚡ Masshantering:</strong> Gör samma ändring på många kunder med ett klick – t.ex. lägg till <em>Vårstädning</em> på alla aktiva kunder, klarmarkera ett moment eller återställ inför en ny säsong.
+            </li>
+          </ul>
+        </div>
+
+        <hr style="border:none; border-top:1px solid var(--border);">
+
+        <div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">🐙 Del 2: GitHub (Appens kod &amp; uppdateringar)</div>
           <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
-            <li>När du gör ändringar i koden här och klistrar in i <code>index.html</code> på GitHub uppdateras appen automatiskt för alla i teamet när de laddar om sidan.</li>
-            <li><strong>Viktigt:</strong> Uppdateringar på GitHub ändrar bara utseendet och funktionerna – era kunder och bockningar ligger tryggt sparade i molnet (JSONBin.io) och påverkas inte.</li>
+            <li>När du klistrar in uppdaterad kod i <code>index.html</code> på GitHub får alla i teamet de nya funktionerna så fort de laddar om sidan.</li>
+            <li><strong>Tryggt:</strong> Uppdateringar på GitHub ändrar bara utseendet och funktionerna – era kunder, koder och bockningar ligger sparade i molnet (JSONBin.io) och rörs inte.</li>
           </ul>
         </div>
 
         <div>
-          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">2. ☁️ JSONBin.io (Gemensam kunddatabas i molnet)</div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">☁️ Del 3: JSONBin.io (Gemensam databas i realtid)</div>
           <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
-            <li>Appen synkar automatiskt med JSONBin.io var 15:e sekund samt direkt när någon bockar av eller ändrar något.</li>
-            <li>På en <strong>ny mobil/dator</strong>: Öppna Team-synk-rutan längst upp, klistra in ert <strong>Bin ID</strong> och er <strong>API-nyckel</strong> och klicka på <em>Spara &amp; Anslut</em>.</li>
-            <li><strong>Viktigt om API-nyckel:</strong> Använd <strong>X-Master-Key</strong> (fungerar alltid direkt). Om du använder en <em>X-Access-Key</em> måste den ha behörighet för både <strong>Read</strong> och <strong>Update</strong> på er Bin (inte bara Create).</li>
+            <li>Appen synkar automatiskt var 15:e sekund samt direkt när någon bockar av eller ändrar något.</li>
+            <li>På en <strong>ny mobil/dator</strong>: Klistra in ert <strong>Bin ID</strong> och er <strong>API-nyckel</strong> i Team-synk-rutan längst upp och klicka på <em>Spara &amp; Anslut</em>.</li>
+            <li><strong>Tips om API-nyckel:</strong> Använd <strong>X-Master-Key</strong> (fungerar alltid direkt). Använder du en <em>X-Access-Key</em> måste den ha behörighet för både <strong>Read</strong> och <strong>Update</strong> på er Bin.</li>
           </ul>
         </div>
 
         <div>
-          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">3. 🔒 Lösenord &amp; Telefonläge</div>
+          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">🔒 Del 4: Lösenord, Telefonläge &amp; Backup</div>
           <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
-            <li>Klicka på <strong>🔒 Dölj topp</strong> uppe i gröna rubriken för att låsa och dölja verktygsfältet på telefonen – då visas bara kundkorten så ingen ändrar scheman av misstag.</li>
-            <li>Lösenordet sparas lokalt i webbläsaren på den enhet där du ställer in det.</li>
-          </ul>
-        </div>
-
-        <div>
-          <div style="font-weight:800; color:var(--primary); margin-bottom:2px;">4. 💾 Säkerhetskopia (.json) &amp; Excel (.csv)</div>
-          <ul style="padding-left:18px; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
-            <li><strong>💾 Spara fil (.json):</strong> Laddar ner en komplett säkerhetskopia av hela kundlistan, koder och scheman till din enhet som extra trygghet utöver molnet.</li>
-            <li><strong>📊 Exportera Excel (.csv):</strong> Skapar en tabellfil som kan öppnas direkt i Excel för överblick eller utskrift.</li>
+            <li><strong>🔒 Dölj topp:</strong> Låser och döljer verktygsfältet på telefonen så att bara kundkorten syns och ingen ändrar scheman av misstag.</li>
+            <li><strong>💾 Spara fil (.json) &amp; 📊 Excel (.csv):</strong> Laddar ner en lokal säkerhetskopia eller en Excel-tabell till din enhet.</li>
           </ul>
         </div>
       </div>
